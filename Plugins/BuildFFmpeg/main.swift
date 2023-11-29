@@ -17,30 +17,30 @@ private enum Library: String, CaseIterable {
             return "n6.0"
         case .freetype:
             // VER-2-10-1以上版本需要依赖brotli库，或指定--with-brotli=no
-            return "VER-2-12-1"
+            return "VER-2-13-2"
         case .fribidi:
-            return "v1.0.12"
+            return "v1.0.13"
         case .harfbuzz:
-            return "5.3.1"
+            return "8.3.0"
         case .libass:
             return "0.17.1"
         case .libpng:
-            return "v1.6.39"
+            return "v1.6.40"
         case .openssl:
             // 用openssl-3.1.0 在真机启动会_armv8_sve_probe, 3.1.1在真机启动会crash
-            return "openssl-3.1.4"
+            return "openssl-3.2.0"
         case .srt:
-            return "v1.5.1"
+            return "v1.5.3"
         case .smbclient:
             return "samba-4.17.5"
         case .gnutls:
-            return "3.7.8"
+            return "3.7.10"
         case .nettle:
             return "nettle_3.8.1_release_20220727"
         case .gmp:
             return "v6.2.1"
         case .brotli:
-            return "v1.0.9"
+            return "v1.1.0"
         case .uchardet:
             return "v0.0.8"
         }
@@ -783,7 +783,7 @@ private class BuildSRT: BaseBuild {
             "-DENABLE_SHARED=0",
             platform == .maccatalyst ? "-DENABLE_MONOTONIC_CLOCK=0" : "-DENABLE_MONOTONIC_CLOCK=1",
         ]
-        try Utility.launch(path: "/usr/local/bin/cmake", arguments: arguments, currentDirectoryURL: buildURL, environment: environ)
+        try Utility.launch(path: "/opt/homebrew/bin/cmake", arguments: arguments, currentDirectoryURL: buildURL, environment: environ)
     }
 }
 
@@ -992,7 +992,7 @@ private class BuildUchardet: BaseBuild {
             "-DENABLE_SHARED=0",
             platform == .maccatalyst ? "-DENABLE_MONOTONIC_CLOCK=0" : "-DENABLE_MONOTONIC_CLOCK=1",
         ]
-        try Utility.launch(path: "/usr/local/bin/cmake", arguments: arguments, currentDirectoryURL: buildURL, environment: environ)
+        try Utility.launch(path: "/opt/homebrew/bin/cmake", arguments: arguments, currentDirectoryURL: buildURL, environment: environ)
     }
 }
 
